@@ -10,10 +10,6 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: './pages/home/home.module#HomePageModule'
-  },
-  {
-    path: 'list',
-    loadChildren: './pages/list/list.module#ListPageModule'
   }
 ];
 

@@ -1,33 +1,35 @@
 import { Component } from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import {Config, Platform} from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import {Page} from './models/page';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
-  public appPages = [
-    {
-      title: 'Home',
-      url: '/home',
-      icon: 'home'
-    },
-    {
-      title: 'List',
-      url: '/list',
-      icon: 'list'
-    }
-  ];
 
-  constructor(
-    private platform: Platform,
-    private splashScreen: SplashScreen,
-    private statusBar: StatusBar
-  ) {
+  public pages: Page[];
+  language: string = 'es';
+
+  constructor(private platform: Platform,
+              private splashScreen: SplashScreen,
+              private statusBar: StatusBar,
+              private translate: TranslateService,
+              private config: Config) {
     this.initializeApp();
+    this.initTranslate();
+
+    this.pages = [
+      { title: 'HOME', icon: 'home', url: '/', show: true},
+      { title: 'START_ROUTINE', icon: 'medal', url: '/start-routine', show: true },
+      { title: 'ADD_ROUTINE', icon: 'add-circle', url: '/add-routine', show: true },
+      { title: 'MODIFY_ROUTINE', icon: 'clipboard', url: '/edit-routine', show: true },
+      { title: 'STATS', icon: 'md-analytics', url: '/stats', show: true }
+    ].filter(page => page.show);
   }
 
   initializeApp() {
@@ -35,5 +37,12 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+  }
+
+  initTranslate() {
+    this.translate.setDefaultLang(this.language);
+    const lang = this.translate.getBrowserLang();
+    this.translate.use(lang ? lang : this.language);
+    this.translate.get('BACK').subscribe(value => this.config.set('backButtonText', value));
   }
 }

@@ -1,1 +1,44 @@
+ion-button[menu_button]{
+  overflow: hidden;
+  height: 33vh!important;
 
+  h4, h3, h2, h1, ion-label {
+    text-transform: none!important;
+  }
+}
+
+ion-button[icon-right-big] {
+  ion-icon {
+    z-index: -1;
+    position: absolute;
+    right: -40px;
+    bottom: -40px;
+    text-align: center;
+    //font-size: var($font-size-base)*10 !important;
+    overflow: hidden;
+  }
+}
+
+//@mixin icon-light-color($color-name, $color) {
+//  .button-ios-#{$color-name} {
+//    ion-icon {
+//      color: lighten($color, 16%)!important;
+//    }
+//  }
+//
+//  .button-md-#{$color-name} {
+//    ion-icon {
+//      color: lighten($color, 16%)!important;
+//    }
+//  }
+//
+//  .button-wp-#{$color-name} {
+//    ion-icon {
+//      color: lighten($color, 16%)!important;
+//    }
+//  }
+//}
+//
+//@each $color-name, $color-base, $color-contrast in get-colors($colors) {
+//  @include icon-light-color($color-name, $color-base);
+//}
