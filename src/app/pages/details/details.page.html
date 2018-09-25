@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>details</ion-title>
+  </ion-toolbar>
+
+  <ion-toolbar [color]="'primary'">
+    <ion-buttons slot="start">
+      <ion-button [fill]="'clear'" (click)="modalCtrl.dismiss()">
+        <ion-icon [name]="'close'" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{"DETAILS_ROUTINE" | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header text-wrap [color]="'secondary'">
+      <ion-icon [name]="'body'" slot="start"></ion-icon>
+      <ion-label>
+        <strong>{{routine.title}}</strong>
+      </ion-label>
+    </ion-list-header>
+
+    <ion-item text-wrap [lines]="'none'">
+      <ion-icon name="calendar" slot="start"></ion-icon>
+      <p text-wrap *ngFor="let day of routine.days">{{day}}</p>
+    </ion-item>
+
+    <ion-card margin-bottom *ngFor="let exercise of routine.exercises">
+      <ion-card-header text-wrap background-tertiary>
+        <span float-start>{{exercise.name}}</span>
+        <span float-end *ngIf="exercise.weight && exercise.weight > 0">
+          <ion-icon [name]="'md-speedometer'" flow-visible slot="start"></ion-icon>
+          +{{exercise.weight}}kg
+        </span>
+      </ion-card-header>
+
+      <ion-item [lines]="'none'">
+        <ion-icon [name]="'logo-buffer'" [color]="'sets'" slot="start"></ion-icon>
+        <p>{{"SETS" | translate}}</p>
+        <h2 slot="end">{{exercise.sets.length}}</h2>
+      </ion-item>
+
+      <ion-item [lines]="'none'">
+        <ion-icon [name]="exercise.type == ('SECS' | translate) ? 'stopwatch' : 'pulse'"
+                  [color]="'reps'" slot="start">
+        </ion-icon>
+        <p>{{exercise.type | translate}}</p>
+        <h2 slot="end">{{exercise.reps}}</h2>
+      </ion-item>
+
+      <ion-item [lines]="'none'">
+        <ion-icon [name]="'clock'" [color]="'rest'" slot="start"></ion-icon>
+        <p>{{"REST" | translate}}</p>
+        <h2 slot="end">{{exercise.rest}} {{"SECS" | translate}}</h2>
+      </ion-item>
+    </ion-card>
+  </ion-list>
+</ion-content>

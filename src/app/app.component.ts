@@ -25,9 +25,9 @@ export class AppComponent {
 
     this.pages = [
       { title: 'HOME', icon: 'home', url: '/', show: true},
-      { title: 'START_ROUTINE', icon: 'medal', url: '/start-routine', show: true },
-      { title: 'ADD_ROUTINE', icon: 'add-circle', url: '/add-routine', show: true },
-      { title: 'MODIFY_ROUTINE', icon: 'clipboard', url: '/edit-routine', show: true },
+      { title: 'START_ROUTINE', icon: 'medal', url: '/start', show: true },
+      { title: 'ADD_ROUTINE', icon: 'add-circle', url: '/add', show: true },
+      { title: 'MODIFY_ROUTINE', icon: 'clipboard', url: '/list', show: true },
       { title: 'STATS', icon: 'md-analytics', url: '/stats', show: true }
     ].filter(page => page.show);
   }
