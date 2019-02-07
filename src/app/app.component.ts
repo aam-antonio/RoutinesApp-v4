@@ -3,8 +3,8 @@ import { Component } from '@angular/core';
 import {Config, Platform} from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import {Page} from './models/page';
 import {TranslateService} from '@ngx-translate/core';
+import {Page} from './models/page';
 
 @Component({
   selector: 'app-root',
