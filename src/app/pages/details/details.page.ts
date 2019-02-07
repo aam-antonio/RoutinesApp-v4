@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Routine} from '../../models/routine';
 import {FirebaseService} from '../../services/firebase.service';
@@ -11,15 +11,15 @@ import {ModalController} from '@ionic/angular';
 })
 export class DetailsPage implements OnInit {
 
-  routine: Routine;
+  routine: Routine = new Routine();
+  @Input() routineId: string;
 
   constructor(private route: ActivatedRoute,
               private firebaseService: FirebaseService,
               public modalCtrl: ModalController) { }
 
   ngOnInit() {
-    const routineId = this.route.snapshot.paramMap.get('id');
-    this.firebaseService.getRoutine(routineId)
+    this.firebaseService.getRoutine(this.routineId)
       .subscribe(item => this.routine = item);
   }
 

@@ -11,7 +11,7 @@
     </ion-card-header>
 
     <ion-list [inset]="true">
-      <ion-button (click)="viewDetails(routine)" *ngFor="let routine of routines$ | async">
+      <ion-button *ngFor="let routine of routines$ | async" (click)="viewDetails(routine.id)">
         <ion-icon [name]="'remove-circle'" [slot]="'start'" [size]="'large'" [color]="'danger'" (click)="confirmDeleteRoutine($event, routine.id)"></ion-icon>
         <span text-wrap>{{routine.title}}</span>
         <ion-icon [name]="'create'" [slot]="'end'" [size]="'large'" (click)="editRoutine($event, routine.id)"></ion-icon>

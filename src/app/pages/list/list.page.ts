@@ -4,7 +4,7 @@ import {Routine} from '../../models/routine';
 import {FirebaseService} from '../../services/firebase.service';
 import {AlertController, ModalController, NavController} from '@ionic/angular';
 import {TranslateService} from '@ngx-translate/core';
-import {DetailsPageModule} from '../details/details.module';
+import {DetailsPage} from '../details/details.page';
 
 @Component({
   selector: 'app-list',
@@ -56,7 +56,7 @@ export class ListPage implements OnInit {
 
   async viewDetails(routineId: string) {
     const modal = await this.modalCtrl.create({
-      component: DetailsPageModule,
+      component: DetailsPage,
       componentProps: {routineId}
     });
 
