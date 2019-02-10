@@ -1,5 +1,7 @@
 {
   "name": "RoutinesApp-v4",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
