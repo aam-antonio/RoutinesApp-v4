@@ -11,11 +11,17 @@
     </ion-card-header>
 
     <ion-list [inset]="true">
-      <ion-button *ngFor="let routine of routines$ | async" (click)="viewDetails(routine.id)">
-        <ion-icon [name]="'remove-circle'" [slot]="'start'" [size]="'large'" [color]="'danger'" (click)="confirmDeleteRoutine($event, routine.id)"></ion-icon>
+      <ion-item button *ngFor="let routine of routines$ | async" (click)="viewDetails(routine.id)">
+        <ion-button [fill]="'clear'" [slot]="'start'">
+          <ion-icon [name]="'trash'" [slot]="'icon-only'" [size]="'large'" [color]="'danger'" (click)="confirmDeleteRoutine($event, routine.id)"></ion-icon>
+        </ion-button>
+
         <span text-wrap>{{routine.title}}</span>
-        <ion-icon [name]="'create'" [slot]="'end'" [size]="'large'" (click)="editRoutine($event, routine.id)"></ion-icon>
-      </ion-button>
+
+        <ion-button [fill]="'clear'" [slot]="'end'">
+          <ion-icon [name]="'create'" [slot]="'icon-only'" [size]="'large'" (click)="editRoutine($event, routine.id)"></ion-icon>
+        </ion-button>
+      </ion-item>
 
       <ion-item *ngIf="!routines$" text-center align-items-center>
         <ion-spinner [name]="'bubbles'"></ion-spinner>
