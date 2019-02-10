@@ -6,6 +6,20 @@
     <ion-title>
       <ion-title>{{"HOME" | translate}}</ion-title>
     </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button *ngIf="(authFirebase.getUser() | async) as user; else showLogin" (click)="authFirebase.logOut()">
+        <ion-label>{{user.displayName}}</ion-label>
+        <ion-icon name="log-out" slot="end"></ion-icon>
+      </ion-button>
+
+      <ng-template #showLogin>
+        <ion-button (click)="authFirebase.logIn()">
+          <ion-label>Login with</ion-label>
+          <ion-icon name="logo-google" slot="end"></ion-icon>
+        </ion-button>
+      </ng-template>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
