@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Page} from '../../models/page';
-import {AuthFirebaseService} from '../../services/auth-firebase/auth-firebase.service';
+import {FirebaseAuthService} from '../../services/firebase-auth/firebase-auth.service';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +11,7 @@ export class HomePage implements OnInit {
 
   pages: Page[];
 
-  constructor(public authFirebase: AuthFirebaseService) {
+  constructor(public fbAuth: FirebaseAuthService) {
 
   }
 

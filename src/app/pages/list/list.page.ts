@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs';
 import {Routine} from '../../models/routine';
-import {FirebaseService} from '../../services/firebase.service';
+import {FirebaseRoutinesService} from '../../services/firebase-routines/firebase-routines.service';
 import {AlertController, ModalController, NavController} from '@ionic/angular';
 import {TranslateService} from '@ngx-translate/core';
 import {DetailsPage} from '../details/details.page';
@@ -16,14 +16,14 @@ export class ListPage implements OnInit {
   routines$: Observable<Routine[]>;
 
   constructor(private navCtrl: NavController,
-              private firebaseService: FirebaseService,
+              private fbRoutines: FirebaseRoutinesService,
               private translate: TranslateService,
               private alertCtrl: AlertController,
               private modalCtrl: ModalController) {
   }
 
   ngOnInit() {
-    this.routines$ = this.firebaseService.getRoutines();
+    this.routines$ = this.fbRoutines.getRoutines();
   }
 
   editRoutine(event, routineId: string) {
@@ -45,7 +45,7 @@ export class ListPage implements OnInit {
           text: this.translate.instant('CONFIRM'),
           cssClass: 'danger',
           handler: () => {
-            this.firebaseService.deleteRoutine(routineId);
+            this.fbRoutines.deleteRoutine(routineId);
           }
         }
       ]

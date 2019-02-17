@@ -1,18 +1,20 @@
 import { Injectable } from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
-import {Routine} from '../models/routine';
+import {Routine} from '../../models/routine';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
+import {FirebaseAuthService} from '../firebase-auth/firebase-auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class FirebaseService {
+export class FirebaseRoutinesService {
 
   routineCollection: AngularFirestoreCollection<Routine>;
   routines: Observable<Routine[]>;
 
-  constructor(private firebase: AngularFirestore) {
+  constructor(private firebase: AngularFirestore,
+              private fbAuth: FirebaseAuthService) {
     this.routineCollection = this.firebase.collection<Routine>('routines');
     this.routines = this.routineCollection.snapshotChanges().pipe(
       map(actions => actions.map(item => {

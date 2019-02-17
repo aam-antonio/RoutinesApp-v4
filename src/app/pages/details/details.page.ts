@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Routine} from '../../models/routine';
-import {FirebaseService} from '../../services/firebase.service';
+import {FirebaseRoutinesService} from '../../services/firebase-routines/firebase-routines.service';
 import {ModalController} from '@ionic/angular';
 
 @Component({
@@ -15,11 +15,11 @@ export class DetailsPage implements OnInit {
   @Input() routineId: string;
 
   constructor(private route: ActivatedRoute,
-              private firebaseService: FirebaseService,
+              private fbRoutines: FirebaseRoutinesService,
               public modalCtrl: ModalController) { }
 
   ngOnInit() {
-    this.firebaseService.getRoutine(this.routineId)
+    this.fbRoutines.getRoutine(this.routineId)
       .subscribe(item => this.routine = item);
   }
 

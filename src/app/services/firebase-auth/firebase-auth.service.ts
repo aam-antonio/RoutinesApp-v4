@@ -10,7 +10,7 @@ import {LoadingControllerService} from '../loading-controller/loading-controller
 @Injectable({
   providedIn: 'root'
 })
-export class AuthFirebaseService {
+export class FirebaseAuthService {
 
   constructor(private afAuth: AngularFireAuth,
               private gplus: GooglePlus,
