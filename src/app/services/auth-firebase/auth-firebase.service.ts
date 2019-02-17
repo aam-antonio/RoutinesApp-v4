@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import {GooglePlus} from '@ionic-native/google-plus/ngx';
 import {Platform} from '@ionic/angular';
 import {webClientId} from '../../../config/firebase.config';
+import {LoadingControllerService} from '../loading-controller/loading-controller.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,16 +14,20 @@ export class AuthFirebaseService {
 
   constructor(private afAuth: AngularFireAuth,
               private gplus: GooglePlus,
-              private platform: Platform) {
+              private platform: Platform,
+              private loadingService: LoadingControllerService) {
   }
 
   logIn() {
+    this.loadingService.presentLoading();
     (this.platform.is('cordova')) ? this.nativeGoogleLogin() : this.webGoogleLogin();
   }
 
   async logOut() {
     await this.afAuth.auth.signOut();
-    await this.gplus.disconnect();
+    if (this.platform.is('cordova')) {
+      await this.gplus.disconnect();
+    }
   }
 
   getUser(): Observable<User | null> {
@@ -37,14 +42,26 @@ export class AuthFirebaseService {
     });
 
     this.afAuth.auth.signInAndRetrieveDataWithCredential(auth.GoogleAuthProvider.credential(gplusUser.idToken))
-      .then(value => console.log('nativeGoogleLogin:success', value))
-      .catch(error => console.log('nativeGoogleLogin:error', error));
+      .then(value => {
+        console.log('nativeGoogleLogin:success', value);
+        this.loadingService.dismissLoading();
+      })
+      .catch(error => {
+        console.log('nativeGoogleLogin:error', error);
+        this.loadingService.dismissLoading();
+      });
   }
 
   webGoogleLogin() {
     this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
-      .then(value => console.log('webGoogleLogin:success', value))
-      .catch(error => console.log('webGoogleLogin:error', error));
+      .then(value => {
+        console.log('webGoogleLogin:success', value);
+        this.loadingService.dismissLoading();
+      })
+      .catch(error => {
+        console.log('webGoogleLogin:error', error);
+        this.loadingService.dismissLoading();
+      });
   }
 
 }
