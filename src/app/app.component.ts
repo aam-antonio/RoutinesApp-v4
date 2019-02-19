@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import {TranslateService} from '@ngx-translate/core';
 import {Page} from './models/page';
+import {FirebaseAuthService} from './services/firebase-auth/firebase-auth.service';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,8 @@ export class AppComponent {
               private splashScreen: SplashScreen,
               private statusBar: StatusBar,
               private translate: TranslateService,
-              private config: Config) {
+              private config: Config,
+              public fbAuth: FirebaseAuthService) {
     this.initializeApp();
     this.initTranslate();
 

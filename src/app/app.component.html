@@ -1,3 +1,40 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-split-pane>
+    <ion-menu [side]="'start'">
+      <ion-header>
+        <ion-toolbar>
+          <div *ngIf="(fbAuth.getUser() | async) as user; else showLogin">
+            <ion-item [lines]="'none'">
+              <ion-avatar [slot]="'start'">
+                <ion-img [src]="user.photoURL"></ion-img>
+              </ion-avatar>
+              <ion-label>{{user.displayName}}</ion-label>
+            </ion-item>
+            <ion-button [expand]="'block'" [size]="'small'" [color]="'danger'" (click)="fbAuth.logOut()">
+              <p>Logout</p>
+            </ion-button>
+          </div>
+
+          <ng-template #showLogin>
+            <ion-button [expand]="'block'" [size]="'large'" (click)="fbAuth.logIn()">
+              <ion-label>Login with</ion-label>
+              <ion-icon name="logo-google" slot="end"></ion-icon>
+            </ion-button>
+          </ng-template>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content>
+        <ion-list>
+          <ion-menu-toggle autoHide="false" *ngFor="let page of pages">
+            <ion-item [routerLink]="[page.url]" routerDirection="forward" detail>
+              <ion-icon [name]="page.icon" [slot]="'start'"></ion-icon>
+              <ion-label text-wrap>{{page.title | translate}}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet main></ion-router-outlet>
+  </ion-split-pane>
 </ion-app>

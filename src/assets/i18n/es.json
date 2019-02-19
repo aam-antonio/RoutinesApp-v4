@@ -1,3 +1,49 @@
 {
+  "MENU": "Menu",
+  "HOME": "Inicio",
+
+  "ROUTINES": "Rutinas",
+  "MODIFY_ROUTINE": "Modificar rutina",
+  "ADD_ROUTINE": "Añadir rutina",
+  "DETAILS_ROUTINE": "Detalles rutina",
+  "START_ROUTINE": "Empezar rutina",
+  "ROUTINE_NAME": "Nombre rutina",
+  "STATS": "Estadísticas",
+
+  "ROUTINE_MODIFIED_SUCCESSFULLY": "Rutina modificada con éxito",
+  "ROUTINE_CREATED_SUCCESSFULLY": "Rutina creada con éxito",
+  "ROUTINE_DELETION_CONFIRMATION": "¿Estás seguro que deseas eliminar esta rutina?",
+
+  "EXERCISES": "Ejercicios",
+  "MODIFY_EXERCISE": "Modificar ejercicio",
+  "ADD_EXERCISE": "Añadir ejercicio",
+  "EXERCISE_NAME": "Nombre ejercicio",
+
+  "RESET": "Reset",
+  "STOP": "Stop",
+  "PAUSE": "Pause",
+  "RESUME": "Resume",
+  "START": "Empezar",
+  "FINISH": "Finalizar",
+
+  "IMPORT": "Importar",
+  "EXPORT": "Exportar",
+
+  "WEEK_DAY": "Día de la semana",
+  "DAYS": "Días",
+  "SETS": "Series",
+  "WEIGHT": "Lastre",
+  "REST": "Descanso",
+  "REST_BETWEEN_SETS": "Descansos entre series",
+  "REPS": "reps",
+  "SECS": "segs",
+  "IN_KG": "En kg",
+
+  "ALL": "Todos",
+
+  "ACCEPT": "Aceptar",
+  "CANCEL": "Cancelar",
+  "CONFIRM": "Confirmar",
+  "BACK": "Atrás"
 
 }

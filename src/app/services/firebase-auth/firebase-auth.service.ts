@@ -6,6 +6,7 @@ import {GooglePlus} from '@ionic-native/google-plus/ngx';
 import {Platform} from '@ionic/angular';
 import {webClientId} from '../../../config/firebase.config';
 import {LoadingControllerService} from '../loading-controller/loading-controller.service';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,12 @@ export class FirebaseAuthService {
 
   getUser(): Observable<User | null> {
     return this.afAuth.user;
+  }
+
+  getUserUid(): Observable<string> {
+    return this.afAuth.authState.pipe(
+      map(user => user ? user.uid : 'shared')
+    );
   }
 
   async nativeGoogleLogin() {

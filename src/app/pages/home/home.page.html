@@ -8,17 +8,11 @@
     </ion-title>
 
     <ion-buttons slot="end">
-      <ion-button *ngIf="(fbAuth.getUser() | async) as user; else showLogin" (click)="fbAuth.logOut()">
-        <ion-label>{{user.displayName}}</ion-label>
-        <ion-icon name="log-out" slot="end"></ion-icon>
-      </ion-button>
-
-      <ng-template #showLogin>
+      <ion-button *ngIf="!(fbAuth.getUser() | async)">
         <ion-button (click)="fbAuth.logIn()">
-          <ion-label>Login with</ion-label>
           <ion-icon name="logo-google" slot="end"></ion-icon>
         </ion-button>
-      </ng-template>
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>

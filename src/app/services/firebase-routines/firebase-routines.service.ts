@@ -9,20 +9,26 @@ import {FirebaseAuthService} from '../firebase-auth/firebase-auth.service';
   providedIn: 'root'
 })
 export class FirebaseRoutinesService {
-
+  // userDoc: AngularFirestoreDocument<any>;
   routineCollection: AngularFirestoreCollection<Routine>;
   routines: Observable<Routine[]>;
 
   constructor(private firebase: AngularFirestore,
               private fbAuth: FirebaseAuthService) {
-    this.routineCollection = this.firebase.collection<Routine>('routines');
-    this.routines = this.routineCollection.snapshotChanges().pipe(
-      map(actions => actions.map(item => {
-        const data = item.payload.doc.data() as Routine;
-        const id = item.payload.doc.id;
-        return {id, ...data};
-      }))
-    );
+    // this.fbAuth.getUserUid()
+    //   .subscribe(uid => {
+        // this.userDoc = this.firebase.doc('routines/' + uid);
+        // this.routineCollection = this.userDoc.collection<Routine>('routines');
+        this.routineCollection = this.firebase.collection<Routine>('routines');
+        this.routines = this.routineCollection.snapshotChanges().pipe(
+          map(actions => actions.map(item => {
+            const data = item.payload.doc.data() as Routine;
+            const id = item.payload.doc.id;
+            return {id, ...data};
+          }))
+        );
+      // });
+  // TODO: https://www.youtube.com/watch?v=2ciHixbc4HE
   }
 
   getRoutines(): Observable<Routine[]> {
